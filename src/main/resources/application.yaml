@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: assignment-bound4-image
+
+
+  datasource:
+    url: jdbc:postgresql://postgres:5432/boundfour
+    username: boundfour
+    password: boundfour
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+      max-lifetime: 1200000
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        default_batch_fetch_size: 100
+    open-in-view: false
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: always
+
+logging:
+  level:
+    root: info
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    com.zaxxer.hikari.HikariConfig: DEBUG
+    com.zaxxer.hikari: TRACE
+
+jwt:
+  key: aGVsbG8gd29ybGQgbXkgbmFtZSBpcyBzc29uZyBoYWhhaGFoYWhhaGFoYSBydXJ1cnVydXJ1cnVydXJ1ZHNmc2Rmc2Rmc2Rmc2EK
+  expiredAt: 6000000

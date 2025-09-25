@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: boundfour:latest
+    container_name: boundfour
+    networks:
+      - boundfour-network
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    networks:
+      - boundfour-network
+    environment:
+      POSTGRES_DB: boundfour
+      POSTGRES_USER: boundfour
+      POSTGRES_PASSWORD: boundfour
+    ports:
+      - "5432:5432"
+
+networks:
+  boundfour-network:
+    driver: bridge
